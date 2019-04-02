@@ -107,4 +107,4 @@ self.view_required_field_error_test(
 ```
 
 ## formset_filler() and instances_saved_test()
-Both of these methods are accessible in the `ViewTestCase`.
+Both [formset_filler()](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/UtilityTestCase.md) and [instances_saved_test()](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/UtilityTestCase.md) methods are accessible in the `ViewTestCase`.
