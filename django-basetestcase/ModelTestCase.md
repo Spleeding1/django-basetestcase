@@ -5,11 +5,11 @@ from basetestcase import ModelTestCase
 ```
 
 - [Test class setup](#Test-class-setup)
-- [model_field_test()](#model_field_test())
-- [model_blank_field_error_test()](#model_blank_field_error_test())
-- [primary_key_test()](#primary_key_test())
-- [str_test()](#str_test())
-- [verbose_name_plural_test()](#verbose_name_plural_test())
+- [model_field_test()](#model_field_test)
+- [model_blank_field_error_test()](#model_blank_field_error_test)
+- [primary_key_test()](#primary_key_test)
+- [str_test()](#str_test)
+- [verbose_name_plural_test()](#verbose_name_plural_test)
 
 ```python
 from django.db import models

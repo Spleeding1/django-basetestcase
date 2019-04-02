@@ -6,9 +6,9 @@ from basetestcase import FormTestCase
 ```
 
 - [Test class setup](#Test-class-setup)
-- [form_field_test()](#form_field_test())
-- [form_required_field_error_test()](#form_required_field_error_test())
-- [formset_test()](#formset_test())
+- [form_field_test()](#form_field_test)
+- [form_required_field_error_test()](#form_required_field_error_test)
+- [formset_test()](#formset_test)
 
 ```python
 from django.forms import ModelForm,modelformset_factory, TextInput

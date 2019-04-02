@@ -9,23 +9,23 @@ from basetestcase import FunctionalTestCase
 [WebElement Methods](#WebElement-Methods)<br />
 
 Methods:
-- [element_has_focus()](#element_has_focus())
-- [get_body()](#get_body())
-- [get_button_test()](#get_button_test())
-- [get_checkbox_test()](#get_checkbox_test())
-- [get_content_header_test()](#get_content_header_test())
-- [get_form_control_input_box_test()](#get_form_control_input_box_test())
-- [get_nabar()](#get_navbar())
-- [get_page()](#get_page())
-- [hover()](#hover())
-- [setUp()](#setUp())
-- [sleep()](#sleep())
+- [element_has_focus()](#element_has_focus)
+- [get_body()](#get_body)
+- [get_button_test()](#get_button_test)
+- [get_checkbox_test()](#get_checkbox_test)
+- [get_content_header_test()](#get_content_header_test)
+- [get_form_control_input_box_test()](#get_form_control_input_box_test)
+- [get_nabar()](#get_navbar)
+- [get_page()](#get_page)
+- [hover()](#hover)
+- [setUp()](#setUp)
+- [sleep()](#sleep)
 - [tearDown()](#tearDown)
-- [wait_for()](#wait_for())
-- [wait_for_error_test()](#wait_for_error_test())
-- [wait_for_form_submission_test()](#wait_for_form_submission_test())
-- [wait_for_invalid()](#wait_for_invalid())
-- [wait_for_valid()](#wait_for_valid())
+- [wait_for()](#wait_for)
+- [wait_for_error_test()](#wait_for_error_test)
+- [wait_for_form_submission_test()](#wait_for_form_submission_test)
+- [wait_for_invalid()](#wait_for_invalid)
+- [wait_for_valid()](#wait_for_valid)
 
 ## Test class setup
 This test class started with [Obey the Testing Goat](http://www.obeythetestinggoat.com/pages/book.html).<br />
@@ -288,15 +288,15 @@ These are "monkey patched" methods.
 WebElement.method = WebElement_method
 ```
 
-- [WebElement_has_placeholder()](#WebElement_has_placeholder())
-- [WebElement_has_value()](#WebElement_has_value())
-- [WebElement_is_above()](#WebElement_is_above())
-- [WebElement_is_below()](#WebElement_is_below())
-- [WebElement_is_between()](#WebElement_is_between())
-- [WebElement_is_help_text()](#WebElement_is_help_text())
-- [WebElement_is_label()](#WebElement_is_label())
-- [WebElement_is_to_the_right_of()](#WebElement_is_to_the_right_of())
-- [WebElement_uses_css_class()](#WebElement_uses_css_class())
+- [WebElement_has_placeholder()](#WebElement_has_placeholder)
+- [WebElement_has_value()](#WebElement_has_value)
+- [WebElement_is_above()](#WebElement_is_above)
+- [WebElement_is_below()](#WebElement_is_below)
+- [WebElement_is_between()](#WebElement_is_between)
+- [WebElement_is_help_text()](#WebElement_is_help_text)
+- [WebElement_is_label()](#WebElement_is_label)
+- [WebElement_is_to_the_right_of()](#WebElement_is_to_the_right_of)
+- [WebElement_uses_css_class()](#WebElement_uses_css_class)
 
 ## WebElement_has_placeholder()
 Tests the placeholder of an element.
