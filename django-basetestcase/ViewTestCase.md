@@ -5,10 +5,10 @@ from basetestcase import ViewTestCase
 ```
 - [Test class setup](#Test-class-setup)
 - [AJAX](#AJAX)
-- [assertTemplatesUsed()](#assertTemplatesUsed())
-- [path_to_correct_view_test()](#path_to_correct_view_test())
-- [view_required_field_error_test()](#view_required_field_error_test())
-- [formset_filler() and instances_saved_test()](#formset_filler() and instances_saved_test())
+- [assertTemplatesUsed()](#assertTemplatesUsed)
+- [path_to_correct_view_test()](#path_to_correct_view_test)
+- [view_required_field_error_test()](#view_required_field_error_test)
+- [formset_filler() and instances_saved_test()](#formset_filler-and-instances_saved_test)
 
 ```python
 from django.shortcuts import render
