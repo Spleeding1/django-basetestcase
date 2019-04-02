@@ -1,6 +1,8 @@
 name = 'basetestcase'
 
-from .base_FormTestCase import FormTestCase
-from .base_FunctionalTestCase import FunctionalTestCase
-from .base_ModelTestCase import ModelTestCase
-from .base_ViewTestCase import ViewTestCase
+__version__ = '0.0.11'
+
+from .base_FormTestCase import *
+from .base_FunctionalTestCase import *
+from .base_ModelTestCase import *
+from .base_ViewTestCase import *

@@ -94,8 +94,10 @@ class ModelTestCase(TestCase):
             
     def primary_key_test(self, pk_field, pk_test_value):
         Model = self.model()
-        self.default()
-        field_key = Model.objects.get(pk_field=pk_test_value)
+        self.create()
+        pk_dict = {}
+        pk_dict[pk_field] = pk_test_value
+        field_key = Model.objects.get(**pk_dict)
         primary_key = Model.objects.get(pk=pk_test_value)
         
         self.assertEquals(field_key, primary_key)
@@ -104,7 +106,6 @@ class ModelTestCase(TestCase):
     def str_test(self, expected_string, **kwargs):
         Model = self.model()
         str_object = Model.objects.create(**kwargs)
-        
         self.assertEqual(str(str_object), expected_string)
 
     

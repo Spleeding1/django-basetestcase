@@ -56,21 +56,14 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     def find_xpath(self, xpath):
         element = self.browser.find_element_by_xpath(xpath)
         return element
-    
-    
-    def form_submission_test(self, *profile_list, element=None):
-        if element is None:
-            element = self.get_body()
-        for item in profile_list:
-            self.assertIn(item, element.text, msg=f'{item}')
         
 
     def get_body(self):
         return self.browser.find_element_by_tag_name('body')
     
     
-    def get_button_test(self, button_id, button_text='', css_class='btn btn-main button-main btn-block', is_below=None, is_to_the_right_of=None, _type='submit'):
-        button = self.browser.find_element_by_id(button_id)
+    def get_button_test(self, button_id, button_text='', css_class='btn btn-main button-main btn-block', is_below=None, is_to_the_right_of=None, _type='submit', attrs={}):
+        button = self.find_id(button_id)
         self.assertEqual(button.text, button_text)
         button.uses_css_class(css_class)
         if is_below is not None:
@@ -78,21 +71,19 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         if is_to_the_right_of is not None:
             button.is_to_the_right_of(is_to_the_right_of)
         self.assertEqual(button.get_attribute('type'), _type)
+        for key,value in attrs.items():
+            self.assertEquatl(button.get_attribute(key), value)
         return button
     
     
     def get_checkbox_test(self, checkbox_id, checked=False, css_class='', is_below=None, label=None):
-        checkbox = self.browser.find_element_by_id(checkbox_id)
+        checkbox = self.find_id(checkbox_id)
         checkbox.uses_css_class(css_class)
         checkbox.is_below(is_below)
         self.assertEqual(checkbox.is_selected(), checked)
-        checkbox_label = self.browser.find_element_by_xpath(
-            f'//label[@for="{checkbox_id}"]'
-        )
+        checkbox_label = self.find_xpath(f'//label[@for="{checkbox_id}"]')
         checkbox_label.is_label(label)
-        xpath_box = self.browser.find_element_by_xpath(
-            f'//label[@for="{checkbox_id}"]/input'
-        )
+        xpath_box = self.find_xpath(f'//label[@for="{checkbox_id}"]/input')
         self.assertEqual(
             checkbox.get_attribute('id'),
             xpath_box.get_attribute('id')
@@ -101,7 +92,7 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     
     
     def get_content_header_test(self, header_text, is_below=None, number=1):
-        header = self.browser.find_element_by_xpath(
+        header = self.find_xpath(
             f'//div[@class="content-header"][{str(number)}]'
         )
         self.assertEqual(header.text, header_text)
@@ -111,28 +102,15 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         return header
     
     
-    def get_error(self, error_message, css_class='alert alert-danger d-flex justify-content-center rounded', is_above=None, is_below=None):
-        error = self.browser.find_element_by_class_name('alert')
-        self.assertEquals(error.text, error_message)
-        error.uses_css_class(css_class)
-        if is_above is not None:
-            error.is_above(is_above)
-        if is_below is not None:
-            error.is_below(is_below)
-        return error
-    
-    
-    def get_form_control_input_box_test(self, box_id, css_class='form-control', help_text=None, help_text_css_class=None, is_below=None, label=None, placeholder='', value=''):
+    def get_form_control_input_box_test(self, box_id, css_class='form-control', help_text=None, help_text_css_class='help-text text-muted', is_below=None, label=None, placeholder='', value=''):
         box_label = is_below
         if label is not None:
-            box_label = self.browser.find_element_by_xpath(
-                f'//label[@for="{box_id}"]'
-            )
+            box_label = self.find_xpath(f'//label[@for="{box_id}"]')
             box_label.is_label(label, is_below=is_below)
         else:
             with self.assertRaises(NoSuchElementException):
-                self.browser.find_element_by_xpath(f'//label[@for="{box_id}"]')
-        box = self.browser.find_element_by_id(box_id)
+                self.find_xpath(f'//label[@for="{box_id}"]')
+        box = self.find_id(box_id)
         box.has_placeholder(placeholder)
         box.has_value(value)
         box.uses_css_class(css_class)
@@ -140,21 +118,18 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         if box_label is not None:
             box.is_below(box_label)
         if help_text is not None:
-            box_help_text = self.browser.find_element_by_xpath(
+            box_help_text = self.find_xpath(
                 f'//small[@id="{box_id}_help_text"]'
             )
-            if help_text_css_class is not None:
-                box_help_text.is_help_text(
-                    help_text,
-                    css_class=help_text_css_class,
-                    is_below=box
-                )
-            else:
-                box_help_text.is_help_text(help_text, is_below=box)
+            box_help_text.is_help_text(
+                help_text,
+                css_class=help_text_css_class,
+                is_below=box
+            )
             return box, box_help_text
         else:
             with self.assertRaises(NoSuchElementException):
-                self.browser.find_element_by_xpath(
+                self.find_xpath(
                     f'//small[@id="{box_id}_help_text"]'
                 )
         return box
@@ -220,11 +195,42 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     @wait
     def wait_for(self, fn):
         return fn()
-        
+    
+    
+    @wait
+    def wait_for_error_test(self, error_message, css_class='alert alert-danger d-flex justify-content-center rounded', is_above=None, is_below=None):
+        error = self.find_class('alert')
+        self.assertEquals(error.text, error_message)
+        error.uses_css_class(css_class)
+        if is_above is not None:
+            error.is_above(is_above)
+        if is_below is not None:
+            error.is_below(is_below)
+        return error
+    
+    
+    @wait
+    def wait_for_form_submission_test(self, *data, element=None):
+        if element is None:
+            element = self.get_body()
+        for item in data:
+            self.assertIn(item, element.text, msg=f'{item}')
+    
+    
+    @wait
+    def wait_for_invalid(self, element_id):
+        element = self.find_selector(element_id + ':invalid')
+        return element
+    
+    
+    @wait
+    def wait_for_valid(self, element_id):
+        element = self.find_selector(element_id + ':valid')
+        return element
+    
         
     def WebElement_has_placeholder(self, placeholder):
-        set_placeholder = self.get_attribute('placeholder')
-            
+        set_placeholder = self.get_attribute('placeholder') 
         assert set_placeholder == placeholder, f"\n{set_placeholder} !=\n{placeholder}"
         
     WebElement.has_placeholder = WebElement_has_placeholder
@@ -232,7 +238,6 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     
     def WebElement_has_value(self, value):
         set_value = self.get_attribute('value')
-        
         assert set_value == value, f"\n{set_value} !=\n{value}"
         
     WebElement.has_value = WebElement_has_value
@@ -241,7 +246,6 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     def WebElement_is_above(self, below_element):
         above = self.location['y']
         below = below_element.location['y']
-        
         assert above < below, f'"{below}"  > "{above}"'
         
     WebElement.is_above = WebElement_is_above
@@ -250,7 +254,6 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     def WebElement_is_below(self, above_element):
         below = self.location['y']
         above = above_element.location['y']
-        
         assert above < below, f'"{below}"  > "{above}"'
         
     WebElement.is_below = WebElement_is_below
@@ -261,22 +264,10 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         self.is_above(below_element)
         
     WebElement.is_between = WebElement_is_between
-
-
-    def WebElement_is_content_header(self, content_header_text, is_below=None):
-        self.uses_css_class('content-header')
-        
-        assert self.text == content_header_text, f'\n"{self.text}" !=\n"{content_header_text}"'
-        
-        if is_below is not None:
-            self.is_below(is_below)
-            
-    WebElement.is_content_header = WebElement_is_content_header
         
         
     def WebElement_is_help_text(self, help_text, css_class='help-text text-muted', is_below=None):
         self.uses_css_class(css_class)
-        
         assert self.text == help_text, f'\n"{self.text}" !=\n"{help_text}"'
         
         if is_below is not None:

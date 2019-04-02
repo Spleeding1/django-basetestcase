@@ -1,7 +1,7 @@
-from django.test import TestCase
+from .base_UtilityTestCase import UtilityTestCase
 
 
-class FormTestCase(TestCase):
+class FormTestCase(UtilityTestCase):
     
     def form_field_test(self, field, error_messages={}, help_text='', initial=None, label='', required=True, widget_attrs={}):
         form = self.form()
@@ -92,3 +92,36 @@ class FormTestCase(TestCase):
                     [error],
                     msg=f'{field}'
                 )
+    
+    
+    def formset_test(self, can_delete=False, extra=1, field_data={}, form=None, formset=None, initial=0, max_num=None, min_num=None, model=None, prefix='form', total=1, validate_max=False, validate_min=False):
+        form_data, test_model_instances = self.formset_filler(
+            field_data=field_data,
+            initial=initial,
+            model=model,
+            prefix=prefix,
+            total=total
+        )
+        test_formset = formset(form_data, prefix=prefix)
+        self.assertEqual(test_formset.extra, extra)
+        
+        if form is not None:
+            self.assertTrue(issubclass(test_formset.form, form))
+        
+        if max_num is not None:
+            self.assertEqual(test_formset.max_num, max_num)
+        
+        if min_num is not None:
+            self.assertEqual(test_formset.min_num, min_num)
+        self.assertEqual(test_formset.can_delete, can_delete)
+        self.assertEqual(test_formset.prefix, prefix)
+        self.assertEqual(test_formset.validate_max, validate_max)
+        self.assertEqual(test_formset.validate_min, validate_min)
+        if test_formset.is_valid():
+            test_formset.save()
+            if model is not None:
+                self.instances_saved_test(model, test_model_instances, total)
+        else:
+            self.fail(
+                f'formset is not valid.\n{data}\n{test_formset.non_form_errors()}\n{test_formset.errors}'
+            )
