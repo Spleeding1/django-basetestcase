@@ -94,6 +94,15 @@ class FormTestCase(UtilityTestCase):
                 )
     
     
+    def formset_error_test(self, formset, form_index=None, field=None, message=''):
+        if form_index is None and field is None:
+            self.assertEqual(formset.non_form_errors(), [message])
+        if field is None:
+            self.assertEqual(formset[form_index].non_field_errors(), [message])
+        else:
+            self.assertEqual(formset[form_index].errors[field], [message])
+    
+    
     def formset_test(self, can_delete=False, extra=1, field_data={}, form=None, formset=None, initial=0, max_num=None, min_num=None, model=None, prefix='form', total=1, validate_max=False, validate_min=False):
         form_data, test_model_instances = self.formset_filler(
             field_data=field_data,

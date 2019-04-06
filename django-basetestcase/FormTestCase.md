@@ -8,6 +8,7 @@ from basetestcase import FormTestCase
 - [Test class setup](#Test-class-setup)
 - [form_field_test()](#form_field_test)
 - [form_required_field_error_test()](#form_required_field_error_test)
+- [formset_error_test()](#formset_error_test)
 - [formset_test()](#formset_test)
 
 ```python
@@ -100,6 +101,13 @@ self.form_required_field_error_test(
         'field_1': 'This is field one.',
         'field_2': 'This is field two.',
 })
+```
+
+## formset_error_test()
+Similar to the [`assertFormsetError`](#https://docs.djangoproject.com/en/2.1/topics/testing/tools/#django.test.SimpleTestCase.assertFormsetError), except does not require `response`.
+
+```python
+def formset_error_test(self, formset, form_index=None, field=None, message='')
 ```
 
 ## formset_test()

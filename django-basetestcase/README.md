@@ -24,4 +24,4 @@ Please check out the [source code](https://github.com/Spleeding1/django-basetest
 This was built using Python 3.7 and Django 2.1.7. Anything prior to that has no guarantees.
 
 ### What's new?
-Documentation has been added.
+[FormTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/FormTestCase.md) Now has a `formset_error_test`.

@@ -43,16 +43,25 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         assert focus == element, f'{focus_id} != {element_id}'
     
     
+    @wait
     def find_class(self, css_class):
         element = self.browser.find_element_by_class_name(css_class)
         return element
     
     
+    @wait
     def find_id(self, _id):
         element = self.browser.find_element_by_id(_id)
         return element
     
     
+    @wait
+    def find_selector(self, selector):
+        element = self.browser.find_element_by_css_selector(selector)
+        return element
+    
+    
+    @wait
     def find_xpath(self, xpath):
         element = self.browser.find_element_by_xpath(xpath)
         return element

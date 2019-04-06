@@ -33,7 +33,8 @@ The `driver` is called as `self.browser`.<br />
 If you change this, things will not work correctly.
 
 ## Locating Elements
-Shortcuts, as opposed to `self.browser.find_element_by_id()`.
+Shortcuts, as opposed to `self.browser.find_element_by_id()`.<br />
+All use the [`wait_for`](#wait_for()) method.
 
 - self.find_class('my_class')
 - self.find_id('my_element_id')
