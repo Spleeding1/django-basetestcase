@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='django-basetestcase',
-    version='1.0.3',
+    version='1.0.4',
     author='Carl Brubaker',
     author_email='spleeding@juno.com',
     description='A collection of cheater methods for the Django TestCase.',

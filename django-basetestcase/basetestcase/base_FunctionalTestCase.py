@@ -41,20 +41,6 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         element_id = element.get_attribute('id')
         
         assert focus == element, f'{focus_id} != {element_id}'
-    
-    
-    def error_test(self, error_message, css_class='alert alert-danger d-flex justify-content-center rounded', find_class='alert', find_xpath=None, is_above=None, is_below=None):
-        if xpath is None:
-            error = self.find_class(find_class)
-        else:
-            error = self.find_xpath(find_xpath)
-        self.assertEquals(error.text, error_message)
-        error.uses_css_class(css_class)
-        if is_above is not None:
-            error.is_above(is_above)
-        if is_below is not None:
-            error.is_below(is_below)
-        return error
         
 
     def get_body(self):
@@ -99,6 +85,20 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         if is_below is not None:
             header.is_below(is_below)
         return header
+    
+    
+    def get_error_test(self, error_message, css_class='alert alert-danger d-flex justify-content-center rounded', find_class='alert', find_xpath=None, is_above=None, is_below=None):
+        if find_xpath is None:
+            error = self.find_class(find_class)
+        else:
+            error = self.find_xpath(find_xpath)
+        self.assertEquals(error.text, error_message)
+        error.uses_css_class(css_class)
+        if is_above is not None:
+            error.is_above(is_above)
+        if is_below is not None:
+            error.is_below(is_below)
+        return error
     
     
     def get_form_control_input_box_test(self, box_id, css_class='form-control', help_text=None, help_text_css_class='help-text text-muted', is_below=None, label=None, placeholder='', value=''):
