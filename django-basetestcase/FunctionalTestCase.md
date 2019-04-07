@@ -14,6 +14,7 @@ Methods:
 - [get_button_test()](#get_button_test)
 - [get_checkbox_test()](#get_checkbox_test)
 - [get_content_header_test()](#get_content_header_test)
+- [get_error_test()](#get_error_test)
 - [get_form_control_input_box_test()](#get_form_control_input_box_test)
 - [get_nabar()](#get_navbar)
 - [get_page()](#get_page)
@@ -22,7 +23,6 @@ Methods:
 - [sleep()](#sleep)
 - [tearDown()](#tearDown)
 - [wait_for()](#wait_for)
-- [wait_for_error_test()](#wait_for_error_test)
 - [wait_for_form_submission_test()](#wait_for_form_submission_test)
 - [wait_for_invalid()](#wait_for_invalid)
 - [wait_for_valid()](#wait_for_valid)
@@ -124,6 +124,25 @@ def get_content_header_test(self, header_text, is_below=None, number=1)
 - is_below: Tests that the header's `location[y]` is greater<br />
 than the given element.
 - number: The number of the header on the page.
+
+## error_test()
+Tests for an error message displayed on a page. Will find the error either<br />
+by `class` or `xpath`. There is a problem with getting the location<br />
+elements by using the `wait_for`. `self.sleep(1)` takes care of the problem
+
+```python
+def error_test(self, error_message, css_class='alert alert-danger d-flex justify-content-center rounded',
+    find_class='alert', find_xpath=None, is_above=None, is_below=None):
+```
+
+- error_message: Tests the text of the error message.
+- css_class: Tests the css class of the error.
+- find_class: Finds element by class.
+- find_xpath: Finds element by xpath.
+- is_above: Tests that the error's `location[y]` is less<br />
+than the given element.
+- is_below: Tests that the error's `location[y]` is greater<br />
+than the given element.
 
 ## get_form_control_input_box_test()
 Tests an input box and returns the input box element.<br />
@@ -228,24 +247,6 @@ Waits a set time before raising an `error`. [@wait](http://www.obeythetestinggoa
 ```python
 self.wait_for(lambda: self.find_id('id_my_input'))
 ```
-
-## wait_for_error_test()
-Tests for an error message displayed on a page.<br />
-Uses the [`wait_for`](#wait_for()) method.
-
-```python
-def wait_for_error_test(self, error_message, css_class='alert alert-danger d-flex justify-content-center rounded',
-    find=('class', 'alert'), is_above=None, is_below=None)
-```
-
-- error_message: Tests the text of the error message.
-- css_class: Tests the css class of the error.
-- find: Uses a `tuple` to locate the error.<br />
-Can be either `'class'` or `'xpath'`.
-- is_above: Tests that the error's `location[y]` is less<br />
-than the given element.
-- is_below: Tests that the error's `location[y]` is greater<br />
-than the given element.
 
 ## wait_for_form_submission_test()
 Tests for submitted information to be displayed on the success page.<br />

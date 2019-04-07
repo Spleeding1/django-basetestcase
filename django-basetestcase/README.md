@@ -25,3 +25,4 @@ This was built using Python 3.7 and Django 2.1.7. Anything prior to that has no 
 
 ### What's new?
 [FormTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/FormTestCase.md) Now has a `formset_error_test`.
+[FunctionalTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/FunctionalTestCase.md#error_test) now accepts `xpath`.
