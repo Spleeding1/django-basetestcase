@@ -1,6 +1,6 @@
 
 # UtilityTestCase
-Has methods used both by [FormTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/FormTestCase.md) and [ViewTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/ViewTestCase.md)
+Has methods used both by [FormTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/FormTestCase.md) and [ViewTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/ViewTestCase.md)
 
 - [formset_filler()](#formset_filler)
 - [instances_saved_test()](#instances_saved_test)

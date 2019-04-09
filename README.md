@@ -3,10 +3,10 @@
 BaseTestCase is a collection of cheater methods for the Django TestCase. They are extensions of the Django TestCase. These came about as a result of learning and using TDD.
 
 There are four different classes:
-1. [ModelTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/ModelTestCase.md)
-2. [FormTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/FormTestCase.md)
-3. [ViewTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/ViewTestCase.md)
-4. [FunctionalTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/FunctionalTestCase.md)
+1. [ModelTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/ModelTestCase.md)
+2. [FormTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/FormTestCase.md)
+3. [ViewTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/ViewTestCase.md)
+4. [FunctionalTestCase](https://github.com/Spleeding1/django-basetestcase/blob/master/FunctionalTestCase.md)
     - For use with Selenium.
     - Origins and some methods from "Obey The Testing Goat".
     

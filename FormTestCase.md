@@ -113,8 +113,8 @@ def formset_error_test(self, formset, form_index=None, field=None, message='')
 
 ## formset_test()
 Tests a `formset`, including populating data and testing if instances<br />
-were saved in a given `Model`. It uses both [`formset_filler`](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/UtilityTestCase.md) and a<br />
-[`instances_saved_test`](https://github.com/Spleeding1/django-basetestcase/blob/master/django-basetestcase/UtilityTestCase.md) methods.
+were saved in a given `Model`. It uses both [`formset_filler`](https://github.com/Spleeding1/django-basetestcase/blob/master/UtilityTestCase.md) and a<br />
+[`instances_saved_test`](https://github.com/Spleeding1/django-basetestcase/blob/master/UtilityTestCase.md) methods.
 
 ```python
 def formset_test(self, formset=None, baseformset=None, can_delete=False,
