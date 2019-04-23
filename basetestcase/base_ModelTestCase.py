@@ -5,7 +5,7 @@ from django.urls import reverse
 
 class ModelTestCase(TestCase):
     
-    def model_field_test(self, field, blank=False, choices=None, default=None, error_messages=None, help_text=None, max_length=None, null=False, unique=False, verbose_name=''):
+    def model_field_test(self, field, blank=False, choices=None, default=None, error_messages=None, help_text=None, max_length=None, null=False, primary_key=False, unique=False, verbose_name=''):
         Model = self.model()
         
         blank_value = Model._meta.get_field(field).blank
@@ -57,6 +57,13 @@ class ModelTestCase(TestCase):
             null,
             actual_null,
             msg=f'\n   {field}: null'
+        )
+        
+        pk_value = Model._meta.get_field(field).primary_key
+        self.assertEquals(
+            primary_key,
+            pk_value,
+            msg=f'\n   {field}: primary_key'
         )
         
         actual_unique = Model._meta.get_field(field).unique

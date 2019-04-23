@@ -63,7 +63,8 @@ Tests the setup of a `Model`'s field.
 ```python
 def model_field_test(self, field, blank=False, choices=None,
     default=None, error_messages=None, help_text=None,
-    max_length=None, null=False, unique=False, verbose_name='')
+    max_length=None, null=False, primary_key=False,
+    unique=False, verbose_name='')
 ```
 
 - field: A string of the Model's field name.
@@ -73,6 +74,7 @@ def model_field_test(self, field, blank=False, choices=None,
 - error_messages: A dictionary of the `error_messages`.
 - help_text: Tests the `help_text` set on the field.
 - null: Tests if field's `null` is set to `True` or `False`.
+- primary_key: Tests if field's `primary_key` is set to `True` or `False`.
 - unique: Tests if field `is unique`.
 - verbose_name: Tests field's `verbose_name`.
 
