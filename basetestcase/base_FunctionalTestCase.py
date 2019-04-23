@@ -41,6 +41,13 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         element_id = element.get_attribute('id')
         
         assert focus == element, f'{focus_id} != {element_id}'
+    
+    
+    def form_submission_test(self, *data, element=None):
+        if element is None:
+            element = self.get_body()
+        for item in data:
+            self.assertIn(item, element.text, msg=f'{item}')
         
 
     def get_body(self):
@@ -191,25 +198,21 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         return modified_fn
     
     
-    @wait
     def find_class(self, css_class):
         element = self.browser.find_element_by_class_name(css_class)
         return element
     
     
-    @wait
     def find_id(self, _id):
         element = self.browser.find_element_by_id(_id)
         return element
     
     
-    @wait
     def find_selector(self, selector):
         element = self.browser.find_element_by_css_selector(selector)
         return element
     
     
-    @wait
     def find_xpath(self, xpath):
         element = self.browser.find_element_by_xpath(xpath)
         return element
@@ -218,26 +221,6 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     @wait
     def wait_for(self, fn):
         return fn()
-    
-    
-    @wait
-    def wait_for_form_submission_test(self, *data, element=None):
-        if element is None:
-            element = self.get_body()
-        for item in data:
-            self.assertIn(item, element.text, msg=f'{item}')
-    
-    
-    @wait
-    def wait_for_invalid(self, element_id):
-        element = self.find_selector(element_id + ':invalid')
-        return element
-    
-    
-    @wait
-    def wait_for_valid(self, element_id):
-        element = self.find_selector(element_id + ':valid')
-        return element
     
         
     def WebElement_has_placeholder(self, placeholder):
