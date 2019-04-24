@@ -83,16 +83,15 @@ class ModelTestCase(TestCase):
     
     # Test displays error for blank=False fields.
     def model_blank_field_error_test(self, data={}):
-        required_fields = []
         Model = self.model()
-        for field in Model._meta.fields:
-            if field.blank is False:
-                required_fields.append(field.name)
-
         for field, value in data.items():
-            if field in required_fields:
+            _field = Model._meta.get_field(field)
+            if _field.blank is False:
                 _data = {**data}
-                _data[field] = ''
+                if isinstance(_field, models.ForeignKey):
+                    _data[field] = None
+                else:
+                    _data[field] = ''
                 
                 with self.assertRaises(ValidationError):
                     Model.objects.create(**_data)
