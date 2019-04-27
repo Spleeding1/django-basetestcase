@@ -28,14 +28,14 @@ class ViewTestCase(UtilityTestCase):
             self.assertEqual(_name.func, view)
             
 
-    def view_required_field_error_test(self, data, required_fields=[]):
+    def view_required_field_error_test(self, data={}, required_fields=[]):
         _data = dict(data)
 
         for field, value in _data.items():
             if field in required_fields:
                 original_value = value
                 _data[field] = ''
-                response = self.post(_data)
+                response = self.post(data=_data)
             
                 self.assertContains(
                     response,

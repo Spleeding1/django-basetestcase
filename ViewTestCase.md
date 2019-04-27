@@ -91,7 +91,7 @@ loops through them setting each one to a empty string, testing
 each loop for `'This field is required'`.
 
 ```python
-def view_required_field_error_test(self, required_fields=[])
+def view_required_field_error_test(self, data={}, required_fields=[])
 ```
 - data: A dictionary with a valid value for each `required` field.
 - required_fields: A list of all of the fields that are `required`.
