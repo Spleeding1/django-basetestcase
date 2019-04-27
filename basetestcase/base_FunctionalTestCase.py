@@ -64,7 +64,7 @@ class FunctionalTestCase(StaticLiveServerTestCase):
             button.is_to_the_right_of(is_to_the_right_of)
         self.assertEqual(button.get_attribute('type'), _type)
         for key,value in attrs.items():
-            self.assertEquatl(button.get_attribute(key), value)
+            self.assertEqual(button.get_attribute(key), value)
         return button
     
     
