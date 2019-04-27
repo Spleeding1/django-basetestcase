@@ -167,7 +167,7 @@ If `help_text` is given, returns both elements.
 ```python
 def get_form_control_input_box_test(self, box_id, css_class='form-control',
     help_text=None, help_text_css_class='help-text text-muted', is_below=None,
-    label=None, placeholder='', value='')
+    label=None, placeholder='', _type='text',value='')
 ```
 
 - box_id: The id of the box.
@@ -182,6 +182,7 @@ than the given element.
 - label: Test the label of the box. If none is given, tests<br />
 that none exists.
 - placeholder: Tests the placeholder of the box.
+- \_type: Tests the type of the box.
 - value: Tests the value of the box.
 
 ```python

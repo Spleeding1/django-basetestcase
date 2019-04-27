@@ -108,7 +108,7 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         return error
     
     
-    def get_form_control_input_box_test(self, box_id, css_class='form-control', help_text=None, help_text_css_class='help-text text-muted', is_below=None, label=None, placeholder='', value=''):
+    def get_form_control_input_box_test(self, box_id, css_class='form-control', help_text=None, help_text_css_class='help-text text-muted', is_below=None, label=None, placeholder='', _type='text', value=''):
         box_label = is_below
         if label is not None:
             box_label = self.find_xpath(f'//label[@for="{box_id}"]')
@@ -120,6 +120,7 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         box.has_placeholder(placeholder)
         box.has_value(value)
         box.uses_css_class(css_class)
+        self.assertEqual(box.get_attribute('type'), _type)
         
         if box_label is not None:
             box.is_below(box_label)
