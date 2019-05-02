@@ -83,7 +83,7 @@ Tests a button and returns the button element.
 
 ```python
 def get_button_test(self, button_id, button_text='', css_class='btn btn-main button-main btn-block',
-    is_below=None, is_to_the_right_of=None, _type='submit')
+    is_below=None, is_to_the_right_of=None, _type='submit', attrs={})
 ```
 
 - button_id: The id of the button.
@@ -93,7 +93,8 @@ def get_button_test(self, button_id, button_text='', css_class='btn btn-main but
 than the given element.
 - is_to_the_right_of: Tests that the button's `location[x]`<br />
 is greater than the given element.
-- _type: Tests the button type.
+- \_type: Tests the button type.
+- attrs: Tests other attributes for the button.
 
 ```python
 my_button = self.get_button_test(
@@ -167,7 +168,7 @@ If `help_text` is given, returns both elements.
 ```python
 def get_form_control_input_box_test(self, box_id, css_class='form-control',
     help_text=None, help_text_css_class='help-text text-muted', is_below=None,
-    label=None, placeholder='', _type='text',value='')
+    label=None, placeholder='', _type='text',value='', attrs={})
 ```
 
 - box_id: The id of the box.
@@ -184,6 +185,7 @@ that none exists.
 - placeholder: Tests the placeholder of the box.
 - \_type: Tests the type of the box.
 - value: Tests the value of the box.
+- attrs: Tests other attributes for the box.
 
 ```python
 box, help_text = self.get_form_control_input_box_test(
