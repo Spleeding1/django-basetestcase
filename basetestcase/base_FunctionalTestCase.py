@@ -77,12 +77,13 @@ class FunctionalTestCase(StaticLiveServerTestCase):
         if label is not None:
             checkbox_label = self.find_xpath(f'//label[@for="{checkbox_id}"]')
             checkbox_label.is_label(label)
-        xpath_box = self.find_xpath(f'//label[@for="{checkbox_id}"]/input')
-        self.assertEqual(
-            checkbox.get_attribute('id'),
-            xpath_box.get_attribute('id'),
-            msg='Checkbox is outside of label'
-        )
+        else:
+            xpath_box = self.find_xpath(f'//label/input[@id="{checkbox_id}"]')
+            self.assertEqual(
+                checkbox.get_attribute('id'),
+                xpath_box.get_attribute('id'),
+                msg='Checkbox is outside of label'
+            )
         return checkbox
     
     
