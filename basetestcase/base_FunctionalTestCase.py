@@ -71,14 +71,17 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     def get_checkbox_test(self, checkbox_id, checked=False, css_class='', is_below=None, label=None):
         checkbox = self.find_id(checkbox_id)
         checkbox.uses_css_class(css_class)
-        checkbox.is_below(is_below)
+        if is_below is not NoneL
+            checkbox.is_below(is_below)
         self.assertEqual(checkbox.is_selected(), checked)
-        checkbox_label = self.find_xpath(f'//label[@for="{checkbox_id}"]')
-        checkbox_label.is_label(label)
+        if label is not None:
+            checkbox_label = self.find_xpath(f'//label[@for="{checkbox_id}"]')
+            checkbox_label.is_label(label)
         xpath_box = self.find_xpath(f'//label[@for="{checkbox_id}"]/input')
         self.assertEqual(
             checkbox.get_attribute('id'),
-            xpath_box.get_attribute('id')
+            xpath_box.get_attribute('id'),
+            msg='Checkbox is outside of label'
         )
         return checkbox
     
