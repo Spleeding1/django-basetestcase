@@ -71,7 +71,7 @@ class FunctionalTestCase(StaticLiveServerTestCase):
     def get_checkbox_test(self, checkbox_id, checked=False, css_class='', is_below=None, label=None):
         checkbox = self.find_id(checkbox_id)
         checkbox.uses_css_class(css_class)
-        if is_below is not NoneL
+        if is_below is not None:
             checkbox.is_below(is_below)
         self.assertEqual(checkbox.is_selected(), checked)
         if label is not None:
