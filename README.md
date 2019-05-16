@@ -18,7 +18,5 @@ To use in a test:
 
 `from basetestcase import ModelTestCase`
 
-Please check out the [source code](https://github.com/Spleeding1/django-basetestcase/tree/master/django-basetestcase/basetestcase) for details. Documentation will be coming bit by bit. Any suggestions or issues, please let me know.
-
 ### Compatibility
 This was built using Python 3.7 and Django 2.1.7. Anything prior to that has no guarantees.
